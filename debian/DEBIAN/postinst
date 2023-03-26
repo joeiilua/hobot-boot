@@ -1,0 +1,42 @@
+#!/bin/bash
+
+echo "Start install hobot boot: kernel image and drivers"
+depmod
+board_id=$(cat /sys/class/socinfo/board_id)
+board_type=$((0x$board_id & 0xf))
+
+if [ $board_type -eq 1 ]; then
+    config_file="/lib/modules-load.d/10-hobot_dvb.conf"
+    if [ -f ${config_file}.disable ];then
+        echo Rename "${config_file}.disable" to ${config_file}
+        mv ${config_file}.disable ${config_file}
+    fi
+fi
+
+if [ $board_type -eq 4 ]; then
+    config_file="/lib/modules-load.d/10-hobot_sdb.conf"
+    if [ -f ${config_file}.disable ];then
+        echo Rename "${config_file}.disable" to ${config_file}
+        mv ${config_file}.disable ${config_file}
+    fi
+fi
+
+# for modname in `cat ${config_file}`
+while read modname
+do
+    if [ -n "$modname" ];then
+        # echo -e "#mod=${modname#*#} mod=${modname}"
+        if [ x"${modname#*#}" == x"${modname}" ];then
+            echo "modprobe :$modname"
+            modprobe $modname
+            if [ $? != 0 ];then
+                echo "modlue: [ $modname ] install failed"!
+            fi
+        fi
+    else
+        echo "modlue: [ $modname ] is not exist"!
+    fi
+done < ${config_file}
+
+exit 0
+
