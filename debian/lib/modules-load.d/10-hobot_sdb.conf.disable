@@ -1,6 +1,4 @@
 bpu_framework
-bpu_cores
-hobot_efuse
 iar
 hobot_vpu
 hobot_jpu
@@ -30,5 +28,5 @@ hobot_spidev
 ch341
 cp210x
 ftdi_sio
-leds-class
+led-class
 leds-gpio

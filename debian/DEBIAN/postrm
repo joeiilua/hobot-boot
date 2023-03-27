@@ -1,5 +1,5 @@
 #!/bin/bash
 
-depmod
+depmod -a 4.14.87
 
 exit 0
