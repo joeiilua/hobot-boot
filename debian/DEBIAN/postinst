@@ -5,6 +5,10 @@ depmod -a 4.14.87
 
 config_file="/lib/modules-load.d/10-hobot_modules.conf"
 
+if [ ! -f "/sys/class/socinfo/soc_uid" ]; then
+    exit 0
+fi
+
 # for modname in `cat ${config_file}`
 while read modname
 do
