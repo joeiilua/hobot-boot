@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "Start install hobot boot: kernel image and drivers"
 depmod -a 4.14.87
 
 config_file="/lib/modules-load.d/10-hobot_modules.conf"
@@ -15,7 +14,6 @@ do
     if [ -n "$modname" ];then
         # echo -e "#mod=${modname#*#} mod=${modname}"
         if [ x"${modname#*#}" == x"${modname}" ];then
-            echo "modprobe :$modname"
             modprobe $modname
             if [ $? != 0 ];then
                 echo "modlue: [ $modname ] install failed"!
