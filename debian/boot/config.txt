@@ -1,5 +1,0 @@
-# Uncomment this to enable infrared communication.
-dtdebug=0
-#dtoverlay=ion_resize,size=0x40000000
-#dtoverlay=dtoverlay_test
-
