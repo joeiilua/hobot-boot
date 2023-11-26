@@ -7,7 +7,7 @@ imagefile="Image"
 # setting bootargs
 flash_partitions="ubi.mtd=2,2048 mtdparts=hr_nand.0:6291456@0x0(miniboot),2097152@0x600000(env) "
 rootfs_args="rootfstype=ext4 rw rootwait root=/dev/mmcblk${devnum}p${devplist}"
-setenv bootargs "console=ttyS0,921600 video=hobot:x3sdb-hdmi ${rootfs_args} ${flash_partitions}"
+setenv bootargs "console=tty1 console=ttyS0,921600 video=hobot:x3sdb-hdmi ${rootfs_args} ${flash_partitions}"
 echo bootargs = ${bootargs}
 
 echo Loading fdt file: ${prefix}hobot/${fdtfile}
